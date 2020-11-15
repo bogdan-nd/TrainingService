@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: trainingservice
+  name: trainingservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: trainingservice
+  strategy: { }
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: trainingservice
+    spec:
+      containers:
+        - env:
+            - name: DB_SERVER
+              value: postgresqldb-training
+            - name: POSTGRES_DB
+              value: trainingservice
+            - name: POSTGRES_PASSWORD
+              value: password
+            - name: POSTGRES_USER
+              value: postgres
+          image: bogdannaida/training-service:latest
+          imagePullPolicy: ""
+          name: training-service
+          ports:
+            - containerPort: 8088
+          resources: { }
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+        - name: postgres-data-training
+          persistentVolumeClaim:
+            claimName: postgres-data-training
+status: { }
