@@ -5,6 +5,7 @@ import com.services.trainings.entity.Training;
 import com.services.trainings.service.TrainingService;
 import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +24,15 @@ public class TrainingController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Training> showTrainingById(@PathVariable UUID id) throws NotFoundException {
-        return ResponseEntity.ok(trainingService.getById(id));
+    public ResponseEntity<Training> showTrainingById(@PathVariable UUID id){
+        try {
+            return ResponseEntity.ok(trainingService.getById(id));
+        }
+        catch(NotFoundException e){
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .build();
+        }
     }
 
     @PostMapping
