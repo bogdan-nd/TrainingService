@@ -12,7 +12,7 @@ message ProtoTraining{
   int32 duration=6;
 }
 
-message Empty{
+message TrainingEmpty{
 }
 
 message TrainingResponse{
@@ -31,8 +31,8 @@ message IdRequest{
 }
 
 service TrainingService{
-  rpc showTrainings(Empty) returns (TrainingResponse);
+  rpc showTrainings(TrainingEmpty) returns (TrainingResponse);
   rpc showTrainingById(IdRequest) returns (TrainingResponse);
   rpc addTraining(TrainingRequest) returns (TrainingResponse);
-  rpc deleteTraining(IdRequest) returns (Empty);
+  rpc deleteTraining(IdRequest) returns (TrainingEmpty);
 }
