@@ -1,4 +1,4 @@
-package com.services.trainings.controller;
+package com.services.trainings.controller.rest;
 
 import com.services.trainings.dto.TrainingDTO;
 import com.services.trainings.entity.Training;
