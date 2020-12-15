@@ -4,7 +4,7 @@ services:
     network_mode: bridge
     container_name: financeservice
     image: bogdannaida/training-service:latest
-    build: ./
+    build: ..
     ports:
       - "8088:8088"
       - "9090:9090"
