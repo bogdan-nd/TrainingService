@@ -1,6 +1,6 @@
 package com.services.trainings.controller.rest;
 
-import com.services.trainings.dto.TrainingDTO;
+import com.services.trainings.controller.rest.dto.TrainingDTO;
 import com.services.trainings.entity.Training;
 import com.services.trainings.service.TrainingService;
 import javassist.NotFoundException;
